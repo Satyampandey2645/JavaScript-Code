@@ -1,0 +1,98 @@
+-------------------------- prompt() --------------------------
+
+let a = prompt("Hey whats your age?");  // it will ask for your age and when you enter your age it will print it 
+console.log(typeof a);  // the printed output of age will be of type string
+
+The prompt() function is not available in Node.js, which is typically used in browsers. 
+To accept input in Node.js, you can use the readline module. Here's an example of how to modify
+your code for Node.js:
+
+Code:
+   const readline = require('readline');
+   
+   const rl = readline.createInterface({
+       input: process.stdin,
+       output: process.stdout
+   });
+   
+   rl.question("Hey, what's your age? ", (age) => {
+       console.log(`Your age is: ${age}`);
+       rl.close();
+   });
+This will prompt for the user's age in the terminal and display the entered value.
+
+Why prompt() works in Replit but not in Node.js:
+* Replit provides a browser-like environment where prompt() is supported.
+* Node.js, however, is server-side and doesn't have built-in support for prompt() because
+  it doesn't have access to browser-specific functions. That's why using readline or other 
+  methods is required in Node.js.
+
+
+-------------------------- alert() --------------------------
+
+alert() is a browser-specific function, and it is not available in Node.js, which is a 
+server-side JavaScript runtime. Node.js does not have access to the browser's built-in functions
+like alert() or prompt().
+
+How to handle this in Node.js:
+If you want to simulate something like an alert or display a message to the user, you can use 
+console.log() in Node.js instead:
+
+Code:
+   console.log("This is msg");
+This will print the message to the console when you run the script in Node.js.
+
+Summary:
+* alert() works in browsers, where you can interact with users using dialog boxes.
+* In Node.js, use console.log() to output messages since Node.js doesn't have access to browser functions like alert().
+
+
+---------- Difference Between prompt() and alert() in JavaScript: ----------
+
+1. Purpose:
+   --> prompt():
+     * Used to display a dialog box that prompts the user for input.
+     * The user can type a response, and that input is returned by the function.
+   Example:
+   Code:
+   let userInput = prompt("Please enter your name:");
+   console.log(userInput);
+   Result: The user enters a value, which is stored in the userInput variable.
+   
+   --> alert():
+     * Used to display a message in a dialog box.
+     * It only shows a message and has an "OK" button to dismiss the alert.
+   Example:
+   Code:
+   alert("This is a message!");
+   Result: The user sees a message and clicks "OK" to close the alert box.
+
+2. Interaction:
+   * prompt(): Interactive; it expects the user to input something (e.g., text or a number).
+   * alert(): Non-interactive; it simply displays a message and waits for the user to acknowledge
+              it by clicking "OK".
+
+3. Return Value:
+   * prompt(): Returns the user's input as a string. If the user cancels the prompt, it returns null.
+   * alert(): Does not return anything. It just shows the message.
+
+4. Example:
+   prompt() Example:
+      * Code:
+        let age = prompt("What's your age?");
+        console.log(`Your age is: ${age}`);
+      * The user is asked for their age, and whatever they input is stored in the age variable.
+
+   alert() Example:
+
+      * Code:
+        alert("Welcome to my website!");
+      * This simply shows the message "Welcome to my website!" with an "OK" button to close it.
+
+5. User Control:
+   * prompt(): Allows the user to cancel or close the prompt, which can result in a null value being returned.
+   * alert(): The user can only click "OK" to dismiss the alert; there’s no option for input.
+
+In summary:
+   * Use prompt() to ask for input from the user.
+   * Use alert() to display information or warnings to the user.  

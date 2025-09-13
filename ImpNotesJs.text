@@ -1,0 +1,77 @@
+1. console.log(3 + "3");
+This results in string concatenation because the + operator, when used with a number and a string,
+converts the number to a string and concatenates the two:
+
+Code:
+   console.log(3 + "3"); // Output: "33"
+   Explanation:
+   * The 3 (number) is converted to "3" (string).
+   * Then, the two strings "3" and "3" are concatenated, resulting in "33".
+
+2. console.log(3 - "3");
+This results in subtraction because the - operator tries to perform a mathematical operation, and 
+JavaScript automatically converts the string "3" to a number for subtraction:
+
+Code:
+   console.log(3 - "3"); // Output: 0
+   Explanation:
+
+   * The string "3" is automatically converted to the number 3.
+   * Then 3 - 3 equals 0.
+
+Key Difference:
++ operator: If one of the operands is a string, JavaScript performs string concatenation.
+- operator: JavaScript performs numeric subtraction, even if one of the operands is a string 
+  (it will attempt to convert the string to a number).
+
+3. console.log(3 * "3");
+This uses the multiplication * operator. JavaScript tries to convert the string "3" into a number, 
+then performs multiplication.
+
+Code:
+   console.log(3 * "3"); // Output: 9
+   Explanation:
+
+   * The string "3" is converted to the number 3.
+   * Then 3 * 3 = 9.
+
+4. console.log(3 / "3");
+This uses the division / operator. Similar to the multiplication case, JavaScript converts the
+string "3" to a number, then performs division.
+
+Code:
+   console.log(3 / "3"); // Output: 1
+   Explanation:
+
+   * The string "3" is converted to the number 3.
+   * Then 3 / 3 = 1.
+
+5. console.log(3 % "3");
+This uses the modulus % operator, which returns the remainder of the division. JavaScript converts
+the string "3" to a number before performing the operation.
+
+Code:
+   console.log(3 % "3"); // Output: 0
+   Explanation:
+
+   * The string "3" is converted to the number 3.
+   * Then 3 % 3 = 0 because there's no remainder when 3 is divided by 3.
+
+6. console.log(3 ** "3");
+This uses the exponentiation ** operator, which raises the first number to the power of the second. 
+JavaScript converts the string "3" into a number before performing the operation.
+
+Code:
+   console.log(3 ** "3"); // Output: 27
+   Explanation:
+
+   * The string "3" is converted to the number 3.
+   * Then 3 ** 3 means 3 raised to the power of 3, which is 27.  
+
+Summary:
+JavaScript automatically converts the string "3" to the number 3 in these mathematical operations (*, /, %, **).
+The results are as follows:
+   3 * "3" → 9
+   3 / "3" → 1
+   3 % "3" → 0
+   3 ** "3" → 27   

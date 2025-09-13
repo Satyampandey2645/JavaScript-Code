@@ -1,0 +1,65 @@
+In JavaScript, the methods includes(), startsWith(), and endsWith() are string functions that help 
+you check for specific patterns in strings. Here's how they work:
+
+1. includes()
+The includes() method checks if a string contains a specific substring and returns true if it does, false otherwise.
+
+Syntax:
+
+Code:
+    string.includes(searchString, position)
+    searchString: The substring you want to check for.
+    position (optional): The position within the string to start searching from (default is 0).
+
+Example:
+Code:
+    let text = "Hello, World!";
+    console.log(text.includes("World")); // Output: true
+    console.log(text.includes("world")); // Output: false (case-sensitive)
+    console.log(text.includes("Hello", 5)); // Output: false (search starts after position 5)
+
+2. startsWith()
+The startsWith() method checks if a string starts with a specific substring and returns true if it does, false otherwise.
+
+Syntax:
+
+Code:
+    string.startsWith(searchString, position)
+    searchString: The substring you want to check for.
+    position (optional): The position to start checking (default is 0).
+
+Example:
+Code:
+    let text = "Hello, World!";
+    console.log(text.startsWith("Hello")); // Output: true
+    console.log(text.startsWith("World")); // Output: false
+    console.log(text.startsWith("World", 7)); // Output: true (search starts at position 7)
+
+3. endsWith()
+The endsWith() method checks if a string ends with a specific substring and returns true if it does, false otherwise.
+
+Syntax:
+
+Code:
+    string.endsWith(searchString, length)
+    searchString: The substring you want to check for.
+    length (optional): Consider only the first length characters of the string (default is the full length of the string).
+
+Example:
+Code:
+    let text = "Hello, World!";
+    console.log(text.endsWith("World!")); // Output: true
+    console.log(text.endsWith("Hello")); // Output: false
+    console.log(text.endsWith("Hello", 5)); // Output: true (only checks the first 5 characters)
+    
+Summary:
+   * includes(): Checks if a string contains a specific substring.
+   * startsWith(): Checks if a string starts with a specific substring.
+   * endsWith(): Checks if a string ends with a specific substring.
+These methods are case-sensitive and are very useful for pattern matching in strings.
+
+
+
+
+
+
