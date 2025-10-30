@@ -75,3 +75,65 @@ The results are as follows:
    3 / "3" → 1
    3 % "3" → 0
    3 ** "3" → 27   
+
+
+IMP: JavaScript is a dynamically typed language. This means that variable types are determined at runtime, and you 
+     do not need to explicitly declare the type of a variable before using it. You can assign different types of 
+     values to a variable during its lifetime.  
+
+     On the other hand, statically typed languages require you to declare the variable's type explicitly, and the 
+     type checking is done at compile-time, before the code is executed.
+
+     Languages like Java, C++, and TypeScript are statically typed, and they require you to specify the variable 
+     type explicitly when declaring them: 
+
+
+------------------------------------------- Constructor ----------------------------------------------- 
+
+In JavaScript, a constructor is a special method used to initialize objects when a new instance of a class 
+(or function-based object) is created.
+
+🧱 1. Constructor in a Class
+      When you use ES6 classes, the constructor() method is automatically called when a new object is created 
+      using new.
+      Example: class Person {
+                 constructor(name, age) {
+                   this.name = name;  // 'this' refers to the new object
+                   this.age = age;
+                 }
+               
+                 greet() {
+                   console.log(`Hi, I'm ${this.name} and I'm ${this.age} years old.`);
+                 }
+               }
+               
+               const satyam = new Person("Satyam", 21);
+               satyam.greet();
+
+
+⚙️ 2. Constructor Function (Before ES6 Classes)
+       Before classes were introduced, developers used constructor functions to create objects.
+       Example: function Person(name, age) {
+                  this.name = name;
+                  this.age = age;
+                }
+                
+                const satyam = new Person("Satyam", 21);
+                console.log(satyam.name); // Satyam
+
+       Here, new Person() does:
+       1. Creates an empty object {}.
+       2. Sets this to that new object.
+       3. Executes the function body.
+       4. Returns the new object. 
+
+📘 3. Key Points
+
+| Feature                        | Description                                                   |
+| -------------------------------| ------------------------------------------------------------- |
+| Purpose                        | Initialize properties of a new object.                        |
+| Called automatically           | When you use the `new` keyword.                               |
+| Only one constructor per class | You can’t have multiple `constructor()` methods in one class. |
+| Use of `super()`               | In subclasses, you must call `super()` before using `this`.   |
+
+      

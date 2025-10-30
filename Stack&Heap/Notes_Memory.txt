@@ -1,0 +1,101 @@
+🔹 Stack
+   -> Definition: A special region of memory used for storing static data — things whose size is known at compile time.
+   -> Works like a stack data structure (Last In, First Out – LIFO).
+   -> Stores:
+      * Primitive values (in most languages, e.g., numbers, booleans, etc.)
+      * Function calls (call stack)
+      * Local variables and references (pointers) to heap objects
+
+👉 Characteristics:
+   -> Very fast allocation/deallocation
+   -> Managed automatically (pops when function ends)
+   -> Limited size (can cause stack overflow)
+
+Example:  let x = 10;  // stored in stack
+          let y = "Hi"; // stored in stack
+
+
+🔹 Heap
+   -> Definition: A region of memory used for dynamic allocation — values whose size may not be known in advance or can change.
+   -> Stores:
+      * Non-primitive objects (arrays, objects, functions, etc.)
+      * Data created at runtime with dynamic memory needs
+
+👉 Characteristics:
+   -> Slower to access than stack (because of pointers/references)
+   -> Memory must be managed (in JS, garbage collector does this for you)
+   -> Can grow as needed (until system memory is exhausted)          
+   
+Example:  let obj = { name: "Satyam" }; // object stored in heap
+          let arr = [1, 2, 3];          // array stored in heap
+
+🔑 Stack vs Heap Comparison
+| Feature          | Stack                                  | Heap                                     |
+| ---------------- | -------------------------------------- | ---------------------------------------- |
+| Stores           | Primitives, function calls, references | Non-primitive objects, arrays, functions |
+| Memory type      | Static memory                          | Dynamic memory                           |
+| Access speed     | Very fast (LIFO)                       | Slower (needs lookup by reference)       |
+| Size             | Small, limited                         | Large, flexible                          |
+| Managed by       | Compiler/runtime (auto pop)            | Programmer or Garbage Collector          |
+| Error            | Stack overflow                         | Memory leak (if not freed)               |
+
+✅ In short:
+-> Stack → fast, fixed, for small/known-size data.
+-> Heap → flexible, dynamic, for objects/collections.  
+
+
+
+🧠 Let's understand in JavaScript Stack & Heap concept deeply: 
+
+Example: let vowel = ["a", "e", "i", "o", "u"];
+   Stack:
+      -> vowel → stores a reference (memory address), say REF #301, pointing to the array in heap.
+      -> Stack only keeps the variable name and the pointer.
+   Heap:
+      -> The actual array ["a", "e", "i", "o", "u"] is stored in heap memory.
+      -> Each element "a", "e", "i", "o", "u" (strings → primitives) is also stored separately inside the heap structure for that array.
+
+   Diagram:
+               STACK                               HEAP
+        ───────────────────────────     ─────────────────────────────────
+        vowel → REF #301 ─────────────▶ ["a", "e", "i", "o", "u"]
+                                          0: "a"
+                                          1: "e"
+                                          2: "i"
+                                          3: "o"
+                                          4: "u"
+                                          length: 5
+
+🧪 Example behavior
+      let another = vowel;   // both point to same heap array
+      another[0] = "A";      // change first element
+      console.log(vowel[0]);   // "A"  (changed in both!)
+
+-> another and vowel both have stack entries, but they point to the same heap object.
+-> That’s why updating another also changes vowel.      
+
+✅ In short:
+   -> Stack: variable name (vowel) and reference to heap.
+   -> Heap: actual array and its elements.
+
+
+
+📊 Stack vs Heap in Arrays (C++, Java, JS):
+
+| Language  | Fixed Array (size known  | Dynamic Array (size      | Stack Usage                | Heap Usage                     |
+|           | at compile/runtime)      | unknown, resizable)      |                            |                                |      
+| ----------| -------------------------| -------------------------| -------------------------- | -------------------------------|
+| C++       | `int arr[5];` →          | `std::vector<int> arr;`  | - Fixed: array lives in    | - Fixed: none (all in stack)   |
+|           | stored directly in stack | or `new int[n];` →       |   stack                    | - Dynamic: elements            |  
+|           |                          | metadata in stack, actual| - Dynamic: vector object   |   allocated in heap            |   
+|           |                          | elements in heap         |   lives in stack           |                                |   
+|           |                          |                          |                            |                                |   
+| Java      | `int[] arr = new         | `ArrayList<Integer> arr  | - Reference variable lives | - Always: arrays/objects live  |
+|           | int[5];` → reference in  | = new ArrayList<>();` →  |   in stack                 |   in heap (Java never puts     |   
+|           | stack, array in heap     | reference in stack,      |                            |   objects in stack)            |                                                                              
+|           |                          | elements in heap         |                            |                                |                                                                               
+|           |                          |                          |                            |                                |                                                                                 
+| JavaScript| `let arr = [1,2,3];` →   | `let arr = [];           | - Variable reference lives | - Arrays are always objects,   |
+|           | variable in stack, array | arr.push(…);` → variable |   in stack                 |   so elements live in heap     |
+|           | object in heap           | in stack, resizable      |                            |                                |
+|           |                          | array in heap            |                            |                                |

@@ -59,6 +59,17 @@ Summary:
 These methods are case-sensitive and are very useful for pattern matching in strings.
 
 
+Difference b/w slice() and substring()
+
+| Feature              | `slice()`                            | `substring()`                  |
+| -------------------- | ------------------------------------ | ------------------------------ |
+| Negative indexes     | Counts from end                      | Treated as `0`                 |
+| If start > end       | Returns `""` (empty)                 | Swaps start & end              |
+| Use case             | Works like Python slice, more modern | Legacy method, sometimes safer |
+
+
+The .trim() method in JavaScript is used to remove whitespace characters (spaces, tabs, newlines, etc.) from both 
+the beginning and end of a string.
 
 
 

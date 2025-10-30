@@ -48,4 +48,7 @@ Step-by-Step Execution
 4. The final output looks like:  Hiodbye
 */
 
+let b = "Hello\rBro"
+console.log(b);  // Brolo
+
 

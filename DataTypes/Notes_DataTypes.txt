@@ -1,0 +1,87 @@
+🔹 1. Primitive Data Types
+    * Definition: The most basic, immutable (cannot be altered) data types.
+    * Stored by value (the actual data is stored in memory).
+    * Operations create a new value instead of modifying the existing one.
+
+Examples in JavaScript:
+    * String → "Hello"
+    * Number → 42, 3.14
+    * BigInt → 123n
+    * Boolean → true, false
+    * undefined
+    * null
+    * Symbol
+
+👉 Characteristics:
+    * Simple and immutable
+    * Comparisons check values directly
+    * Copied by value    
+
+    Example: let a = 10;
+             let b = a;   // copy of value
+             b = 20;
+             console.log(a); // 10 (unchanged)
+
+
+
+🔹 2. Non-Primitive (Reference) Data Types
+    * Definition: More complex data structures that can store collections or multiple values.
+    * Stored by reference (variable holds a reference/address to the memory location).
+    * Mutable (can be modified without changing the reference).
+
+Examples in JavaScript:
+    * Object (general type)
+    * Array → [1, 2, 3]
+    * Function → function() { ... }
+    * Date, RegExp, custom objects, etc.
+
+👉 Characteristics:
+    * Complex and mutable
+    * Comparisons check references, not values
+    * Copied by reference             
+
+    Example: let obj1 = { name: "Satyam" };
+             let obj2 = obj1;   // copy reference
+             obj2.name = "Pandey";
+             console.log(obj1.name); // "Pandey" (changed, because same reference)
+
+
+🔑 Main Differences:
+
+| Aspect         | Primitive               | Non-Primitive (Reference)                      |
+| -------------- | ----------------------- | ---------------------------------------------- |
+| Stored as      | Value                   | Reference (memory address)                     |
+| Mutability     | Immutable               | Mutable                                        |
+| Examples       | Number, String, Boolean | Object, Array, Function                        |
+| Comparison     | Compares value directly | Compares reference (address)                   |
+| Memory         | Stored in stack         | Reference stored in stack, actual data in heap |
+
+
+
+🔹 Return type of non-primitives in JavaScript
+    -> In JavaScript, all non-primitive (reference) data types return "object" when checked with typeof.
+    -> That’s because arrays, functions, dates, regex, etc. are all built on top of the Object type.
+    
+🔹 In JavaScript, arrays are a special kind of object
+   Because arrays in JS are implemented as objects with numeric keys and some extra methods (push, pop, etc.).
+
+If we want to specifically check if it’s an array:
+console.log(Array.isArray(arrayName));  // true
+
+Example:  const heroes = ["Ironman", "Thor", "Superman"];
+          console.log(typeof heroes); // "object"
+          console.log(Array.isArray(heroes)); // true
+
+   Internally:
+         const heroes = {
+           0: "Ironman",
+           1: "Thor",
+           2: "Superman",
+           length: 3
+         };
+ 
+   That’s how JavaScript treats it, plus additional array methods.
+
+🔑 So:
+    -> Array → a special type of object designed for ordered collections.
+    -> All arrays are objects, but not all objects are arrays.   

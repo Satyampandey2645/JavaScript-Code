@@ -1,0 +1,17 @@
+✅ toFixed()
+   -> Purpose: Formats a number with fixed number of digits after the decimal point.
+   -> Always returns a string.
+   -> Rounds if needed.
+
+✅ toPrecision()
+   -> Purpose: Formats a number to a total number of significant digits (not just decimals).
+   -> Always returns a string.
+   -> Can switch to scientific notation if needed.
+
+
+| Feature             | `toFixed(n)`                         | `toPrecision(n)`                   |
+| --------------------| ------------------------------------ | ---------------------------------- |
+| Argument meaning    | Number of digits after decimal point | Total number of significant digits |
+| Output type         | String                               | String                             |
+| Padding with zeros  | Yes (adds trailing zeros if needed)  | Only if significant digits require |
+| Scientific notation | No                                   | Yes (for large/small numbers)      |

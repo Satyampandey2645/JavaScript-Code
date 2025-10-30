@@ -1,0 +1,74 @@
+An equality check == and comparisons >, <, >=, <= work differently.
+The loose equality operator == has its own special coercion rules, and null is only loosely equal to undefined. So, == has special rules: null is only equal to undefined.
+Comparisons convert null to a number, treating it as 0 that's why null >= 0 is true and null > 0 is false.
+
+
+Equality (==) comparisons
+
+    | Expression          | Result  | Why                                                 |
+    | ------------------- | ------- | --------------------------------------------------- |
+    | `null == null`      | ✅ true  | Same value.                                         |
+    | `null == undefined` | ✅ true  | Special rule in JS: `null` only equals `undefined`. |
+    | `null == 0`         | ❌ false | `==` does **not** coerce `null` to number.          |
+    | `null == false`     | ❌ false | No coercion to boolean here.                        |
+    | `null == NaN`       | ❌ false | Different types, no special rule.                   |
+
+
+Relational (<, >, <=, >=) comparisons
+👉 Here null gets converted to a number (0).
+
+    | Expression  | Result   | Why             |
+    | ----------- | -------- | --------------- |
+    | `null > 0`  | ❌ false | `0 > 0` → false |
+    | `null >= 0` | ✅ true  | `0 >= 0` → true |
+    | `null < 0`  | ❌ false | `0 < 0` → false |
+    | `null <= 0` | ✅ true  | `0 <= 0` → true |
+
+
+
+✅ Rule of thumb:
+
+* If both are strings → lexicographic comparison (like sorting words in a dictionary).
+  Example: Why "2" > "12" is true?
+             -> Compare first characters: "2" vs "1".
+             -> "2" has Unicode 50, "1" has Unicode 49.
+             -> Since 50 > 49, "2" is considered greater than "12", even though numerically 2 < 12.
+
+* If one is string, one is number → JS converts string → number, then compares numerically.
+  Example: Why "2" > 1 is true?
+             -> "2" is a string, but JS attempts numeric conversion.
+             -> Number("2") → 2.
+             -> 2 > 1 → true 
+
+
+ Example: console.log("apple" < "banana"); // true
+          🔹 Step 1: Both operands are strings
+            -> When both sides are strings, JavaScript uses lexicographic comparison (dictionary order), based on the 
+               Unicode code points of each character.   
+
+          🔹 Step 2: Compare character by character 
+            -> "apple" vs "banana"
+                Compare first letters:
+                   "a" (Unicode: 97)
+                   "b" (Unicode: 98)
+            Since 97 < 98, JavaScript concludes:   
+            "apple" < "banana" → true
+
+          🔹 Step 3: If first characters are equal  
+            -> If the first letters are the same, JS continues checking the next character until a difference is found.
+               Example: console.log("abc" < "abd"); // true  ('c' < 'd')
+                        console.log("abc" < "abc"); // false (they’re equal)
+
+
+✅ Summary Table
+
+| Operands                  | Comparison Type             |
+| ------------------------- | --------------------------- |
+| `"string"` vs `"string"`  | Lexicographic               |
+| `"string"` vs `number`    | Numeric                     |
+| `number` vs `number`      | Numeric                     |
+| `null` vs `number`        | Numeric (`null → 0`)        |
+| `undefined` with anything | Always false (NaN involved) |
+
+
+      

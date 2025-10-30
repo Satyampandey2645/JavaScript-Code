@@ -1,0 +1,78 @@
+The Array object, as with arrays in other programming languages, enables storing a collection of multiple items 
+under a single variable name, and has members for performing common array operations.
+
+In JavaScript, arrays aren't primitives but are instead Array objects with the following core characteristics:
+-> JavaScript arrays are resizable and can contain a mix of different data types. (When those characteristics are 
+   undesirable, use typed arrays instead.)
+-> JavaScript arrays are not associative arrays and so, array elements cannot be accessed using arbitrary strings 
+   as indexes, but must be accessed using nonnegative integers (or their respective string form) as indexes.
+-> JavaScript arrays are zero-indexed: the first element of an array is at index 0, the second is at index 1, and so 
+   on — and the last element is at the value of the array's length property minus 1.
+-> JavaScript array-copy operations create shallow copies. (All standard built-in copy operations with any JavaScript 
+   objects create shallow copies, rather than deep copies).
+
+--------------------------------------------  Array methods  ---------------------------------------------------------- 
+
+Array.isArray(): The Array.isArray() static method determines whether the passed value is an Array.
+
+from(): The Array.from() static method creates a new, shallow-copied Array instance from an iterable or 
+        array-like object.
+
+Array.of(): The Array.of() static method creates a new Array instance from a variable number of arguments, 
+            regardless of number or type of the arguments.
+
+includes(): The includes() method of Array instances determines whether an array includes a certain value among its 
+           entries, returning true or false as appropriate. 
+
+pop(): The pop() method of Array instances removes the last element from an array and returns that element. 
+       This method changes the length of the array.
+
+push(): The push() method of Array instances adds the specified elements to the end of an array and returns the new 
+        length of the array.       
+
+concat(): The concat() method of Array instances is used to merge two or more arrays. This method does not change the 
+          existing arrays, but instead returns a new array.        
+
+indexOf(): The indexOf() method of Array instances returns the first index at which a given element can be found in the 
+           array, or -1 if it is not present.          
+
+join(): The join() method of Array instances creates and returns a new string by concatenating all of the elements in 
+        this array, separated by commas or a specified separator string. If the array has only one item, then that item 
+        will be returned without using the separator.
+
+slice(): The slice() method of Array instances returns a shallow copy of a portion of an array into a new array object 
+         selected from start to end (end not included) where start and end represent the index of items in that array. 
+         The original array will not be modified.
+
+splice(): The splice() method of Array instances changes the contents of an array by removing or replacing existing 
+          elements and/or adding new elements in place.
+
+          To create a new array with a segment removed and/or replaced without mutating the original array, use 
+          toSpliced(). To access part of an array without modifying it, see slice().   
+
+          Syntax of splice():    splice(start, deleteCount, item1, item2)
+
+toSpliced(): The toSpliced() method of Array instances is the copying version of the splice() method. It returns a 
+             new array with some elements removed and/or replaced at a given index.          
+
+shift(): The shift() method of Array instances removes the first element from an array and returns that removed element. 
+         This method changes the length of the array.
+
+unshift(): The unshift() method of Array instances adds the specified elements to the beginning of an array and returns 
+           the new length of the array. 
+
+toString(): The toString() method of Array instances returns a string representing the specified array and its elements.
+
+sort(): The sort() method of Array instances sorts the elements of an array in place and returns the reference to the 
+        same array, now sorted. The default sort order is ascending, built upon converting the elements into strings, 
+        then comparing their sequences of UTF-16 code unit values.
+
+        The time and space complexity of the sort cannot be guaranteed as it depends on the implementation.
+
+        To sort the elements in an array without mutating the original array, use toSorted().
+
+toSorted(): The toSorted() method of Array instances is the copying version of the sort() method. It returns a new 
+            array with the elements sorted in ascending order.    
+
+flat(): The flat() method of Array instances creates a new array with all sub-array elements concatenated into it 
+        recursively up to the specified depth.               

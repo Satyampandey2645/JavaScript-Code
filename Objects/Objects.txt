@@ -1,0 +1,58 @@
+
+------------------------------------------------- Object.assign() -------------------------------------------------------
+
+The Object.assign() static method copies all enumerable own properties from one or more source objects to a target 
+object. It returns the modified target object.
+
+Syntax: Object.assign(target)
+        Object.assign(target, source1)
+        Object.assign(target, source1, source2)
+        Object.assign(target, source1, source2, /* …, */ sourceN)
+
+Object.assign(target, source1, source2, ...)
+{} → a new empty object (this becomes the target)
+So the empty {} means: “Start with a new blank object, and copy everything into it        
+
+So it means if we don't use empty object {}, then the first argument will be taken as target and every combined 
+properties will be reflected in first argumented object
+
+-------------------------------------------------------------------------------------------------------------------------
+
+When data comes from a database (like MongoDB, MySQL, or Firebase), it usually comes as an array of objects.
+
+🧠 Why it comes as an array of objects
+Because:
+  * A table or collection in a database usually has multiple records (rows).
+  * Each record represents one item or entry (like one user, one product, etc.).
+  * Each record has key–value pairs (like columns in SQL or fields in MongoDB).
+
+So:
+  * Each record = one object
+  * All records together = an array of objects
+
+----------------------------------------------- Object.freeze() ---------------------------------------------------------
+
+The Object.freeze() static method freezes an object. Freezing an object prevents extensions and makes existing 
+properties non-writable and non-configurable. A frozen object can no longer be changed: new properties cannot be added, 
+existing properties cannot be removed, their enumerability, configurability, writability, or value cannot be changed, 
+and the object's prototype cannot be re-assigned. freeze() returns the same object that was passed in.
+
+Freezing an object is the highest integrity level that JavaScript provides.
+
+----------------------------------------------- Object.keys() -----------------------------------------------------------
+
+The Object.keys() static method returns an array of a given object's own enumerable string-keyed property names.
+
+----------------------------------------------- Object.values() ---------------------------------------------------------
+
+The Object.values() static method returns an array of a given object's own enumerable string-keyed property values.
+
+---------------------------------------------- Object.entries() ---------------------------------------------------------
+
+The Object.entries() static method returns an array of a given object's own enumerable string-keyed property key-value 
+pairs.
+
+---------------------------------------------- hasOwnProperty() ---------------------------------------------------------
+
+The hasOwnProperty() method of Object instances returns a boolean indicating whether this object has the specified 
+property as its own property (as opposed to inheriting it).
