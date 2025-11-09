@@ -1,0 +1,34 @@
+* The 'this' keyword refers to the object that is currently executing the function. 
+* 'this' refers to the object that calls the function.
+* In a browser, this → window(Global object in browser)
+* In Node.js, this → {} (empty object in a module)
+
+* In a regular function, 'this' refers to the global object (window in browser, undefined in Node.js strict mode).
+* In Node.js (non-strict mode), 'this' in a regular function refers to the global object
+
+* Suppose there is a function and in that function a local variable is declared and if we are accessing it using 
+  'this.variableName', it will give undefined in non strict mode and error in strict mode becoz that variable is a local 
+  variable, not a property of any object means variable belongs only to the function’s local scope, not to any object.
+
+If you put that variable as a property of an object, this will point to it:
+Example:   const user = {
+            username: "Satyam",
+            showThis() {
+                console.log(this.username);
+            }
+           };
+
+           user.showThis(); // "Satyam"  
+
+----------------- The output of 'this' when you call your function in Node.js (non-strict mode) ----------------------
+
+  Output: <ref *1> Object [global] { ... }
+
+  Explanation:
+  * This big object is the global object in Node.js — similar to the window object in browsers.
+  * It contains built-in Node functions like:
+  * setTimeout, setInterval, clearTimeout, etc.
+  * fetch, crypto, and other Node global APIs.
+  * <ref *1> and [Circular *1] just mean there’s a circular reference (the global object contains a reference to itself).
+
+

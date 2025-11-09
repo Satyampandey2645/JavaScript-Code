@@ -1,3 +1,8 @@
+JavaScript is a single threaded language. In Js everything is a process.
+
+In browser, window is a global object and In Node.js, this is global object
+
+
 1. console.log(3 + "3");
 This results in string concatenation because the + operator, when used with a number and a string,
 converts the number to a string and concatenates the two:

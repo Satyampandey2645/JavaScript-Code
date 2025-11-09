@@ -1,0 +1,15 @@
+⚡ Difference Between Arrow Function and Regular Function in JavaScript
+
+| Feature                  | Regular Function                                                 | Arrow Function                                                                             |
+| ------------------------ | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| `this` binding           | Has its own `this` (depends on how function is called).          | Does **not** have its own `this`; it inherits from the **lexical (outer) scope**.          |
+| Syntax                   | Longer syntax with `function` keyword.                           | Short and concise syntax using `=>`.                                                       |
+| Used as constructor      | Can be used as a constructor with `new`.                         | ❌ Cannot be used as a constructor (will throw error).                                     |
+| `arguments` object       | Has its own `arguments` object.                                  | ❌ Doesn’t have `arguments`; must use rest parameters (`...args`).                         |
+| `super` and `new.target` | Has its own binding.                                             | ❌ Does not have its own; inherits from parent scope.                                      |
+| Best use case            | When you need your own `this` (like in methods or constructors). | When you want to preserve parent scope’s `this` (like inside callbacks or event handlers). |
+
+✅ Short Interview Answer
+Arrow functions don’t have their own this, arguments, or prototype. They inherit this from the surrounding scope, making 
+them useful for callbacks. Regular functions have their own this and can be used as constructors.
+

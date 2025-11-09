@@ -1,0 +1,510 @@
+🧠 What is an Execution Context?
+An Execution Context (EC) is like a box or environment where JavaScript code is evaluated and executed.
+It defines how variables, functions, and the this keyword are managed.
+
+Whenever your code runs, JavaScript creates an Execution Context to keep track of everything happening during execution.
+
+🔁 Types of Execution Contexts
+There are three main types:
+1. Global Execution Context (GEC)
+2. Function Execution Context (FEC)
+3. Eval Execution Context (used rarely, for code inside eval())
+
+
+1️⃣ Global Execution Context (GEC)
+* Created when the JS engine starts executing your script (the first thing that runs).
+* It:
+  -> Creates a global object (window in browser, global in Node.js)
+  -> Sets this to the global object
+  -> Allocates memory for all global variables and functions
+
+  Example:  let a = 10;
+            function greet() {
+                console.log("Hello, Satyam!");
+            }
+
+            Here:
+            -> GEC is created first.
+            -> Memory is allocated for a and greet (but not executed yet).
+
+
+2️⃣ Function Execution Context (FEC)
+Whenever a function is called, a new execution context is created for that function.
+
+Example:  function greet() {
+            let name = "Satyam";
+            console.log("Hello, " + name);
+          }
+
+          greet();
+
+          Here:
+          When greet() is called:
+          -> A new FEC is created.
+          -> It has its own memory space (for local variables and arguments).
+          -> After the function finishes, its FEC is destroyed.
+           
+
+🧩 Each Execution Context has two main phases
+1. Creation Phase
+   JS engine sets up the environment:
+   * Creates a variable object (VO)
+   * Sets up the scope chain
+   * Determines this value
+   * Memory is allocated for variables and functions
+     -> Variables are set to undefined
+     -> Functions are stored as references
+
+2. Execution Phase
+   * Code is executed line by line.
+   * Variable values are assigned.
+   * Function calls are made (creating new FECs).
+
+
+🧱 Execution Stack (Call Stack)
+All Execution Contexts are managed using a stack structure (LIFO).
+
+Example:  function first() {
+            console.log("Inside first");
+            second();
+          }
+
+          function second() {
+              console.log("Inside second");
+          }
+
+          first();
+          console.log("Done!");
+
+Step-by-step flow:
+* Global Execution Context → pushed first
+* first() → creates new FEC → pushed
+* second() → creates new FEC → pushed
+* second() finishes → popped
+* first() finishes → popped
+* Finally, GEC is popped → program ends
+
+🧠 Stack at different moments:
+| second() FEC |
+| first()  FEC |
+| Global  EC   |
+
+
+⚙️ Visualization Summary:
+
+| Phase             | What Happens                                                        |
+| ----------------- | ------------------------------------------------------------------- |
+| Creation          | Memory is allocated (`undefined` for vars, full function for funcs) |
+| Execution         | Code runs line by line, values are assigned                         |
+| After Execution   | Function EC is popped off the stack                                 |
+
+
+🧩 Example to Combine All Concepts:
+
+let x = 10;
+function outer() {
+    let y = 20;
+    function inner() {
+        let z = 30;
+        console.log(x + y + z);
+    }
+    inner();
+}
+outer();
+
+Execution Flow:
+1. Global EC created → x, outer stored.
+2. When outer() runs → new FEC (outer) created.
+3. Inside it, inner() is called → new FEC (inner) created.
+4. JS resolves variables using scope chain:
+   * z → inner
+   * y → outer
+   * x → global
+5. After printing 60, inner and outer ECs are popped.
+
+
+🧩 In Short:
+
+| Term                  | Meaning                                |
+| --------------------- | -------------------------------------- |
+| Execution Context     | The environment where code runs        |
+| Global EC             | Default context for entire script      |
+| Function EC           | Created each time a function is called |
+| Execution Stack       | Manages all ECs (LIFO)                 |
+| Phases                | Creation → Execution                   |
+
+-------------------------------------------------------------------------------------------------------------------------
+
+🧩 Example Code:
+let a = 10;
+function first() {
+    console.log("Inside first");
+    second();
+}
+
+function second() {
+    console.log("Inside second");
+}
+
+first();
+console.log("Done!");
+
+
+🧠 Step-by-Step Execution Flow:
+
+Step 1: Code starts running
+🧱 Global Execution Context (GEC) is created.
+
+Memory Creation Phase:
+
+| Variable | Memory Value       |
+| -------- | ------------------ |
+| `a`      | `undefined`        |
+| `first`  | function reference |
+| `second` | function reference |
+
+✅ this → global object (window in browser)
+✅ Global EC is pushed to the Call Stack
+
+Call Stack:
+| Global EC |
+
+Step 2: Execution Phase of Global EC
+➡️ a = 10
+➡️ first() is called → new Function Execution Context (FEC) is created for first
+
+New Context Created:
+* Memory for local variables and this
+* Execution context for first() pushed to the stack
+
+Call Stack:
+| first() EC |
+| Global EC  |
+
+Step 3: Inside first()
+🖥 console.log("Inside first") → prints ✅ Inside first
+➡️ Then second() is called
+   → New FEC for second() is created and pushed onto the stack.
+
+Call Stack:
+| second() EC |
+| first() EC  |
+| Global EC   |
+
+Step 4: Inside second()
+🖥 console.log("Inside second") → prints ✅ Inside second
+✅ Function second() completes → its EC is popped from the stack.
+
+Call Stack:
+| first() EC  |
+| Global EC   |
+
+Step 5: Return to first()
+After second() finishes, control goes back to first().
+✅ first() completes → its EC is popped.
+
+Call Stack:
+| Global EC |
+
+Step 6: Back to Global Context
+Now JS executes the remaining line:
+   console.log("Done!");
+   ✅ Prints Done!
+Program ends → Global EC is finally popped off the stack.
+
+Call Stack:
+(empty)
+
+🧭 Final Visualization Summary:
+
+                     ⬇️ Start Program
+         ┌───────────────────────────┐
+         │      Global EC created    │
+         └───────────────────────────┘
+                      ⬇️
+               first() is called
+         ┌───────────────────────────┐
+         │     first() EC created    │
+         └───────────────────────────┘
+                      ⬇️
+               second() is called
+         ┌───────────────────────────┐
+         │     second() EC created   │
+         └───────────────────────────┘
+                      ⬇️
+              second() finishes
+         ┌───────────────────────────┐
+         │   first() EC removed      │
+         └───────────────────────────┘
+                      ⬇️
+           Global EC removed → End ✅
+
+
+🧩 Key Takeaways:
+
+| Concept                | Meaning                                 |
+| ---------------------- | --------------------------------------- |
+| Execution Context      | Environment for executing JS code       |
+| Global EC              | Created first, destroyed last           |
+| Function EC            | Created every time a function is called |
+| Call Stack             | Manages contexts (LIFO order)           |
+| When function ends     | Its EC is popped from stack             |
+
+-------------------------------------------------------------------------------------------------------------------------
+
+🧩 Example Code:
+let a = 5;
+
+function outer() {
+    let b = 10;
+
+    function inner() {
+        let c = 15;
+        console.log(a + b + c);
+    }
+
+    inner();
+}
+
+outer();
+
+🧠 Step-by-Step Explanation:
+Step 1 — Program starts
+✅ JavaScript engine creates the Global Execution Context (GEC).
+
+Memory Phase (Hoisting):
+
+| Variable | Value              |
+| -------- | ------------------ |
+| `a`      | `undefined`        |
+| `outer`  | function reference |
+
+Then the Execution Phase begins:
+* a = 5
+* outer() is called → new Execution Context created
+
+📦 Stack now:
+| outer() EC |
+| Global EC  |
+
+Step 2 — Inside outer()
+* A new Function Execution Context (FEC) is created for outer.
+
+Memory setup:
+
+| Variable | Value              |
+| -------- | ------------------ |
+| `b`      | `undefined`        |
+| `inner`  | function reference |
+
+Then during execution:
+* b = 10
+* inner() is called → new FEC created for it
+
+📦 Stack now:
+| inner() EC |
+| outer() EC |
+| Global EC  |
+
+Step 3 — Inside inner()
+Memory setup:
+| Variable | Value       |
+| -------- | ----------- |
+| `c`      | `undefined` |
+
+Then:
+* c = 15
+* Executes console.log(a + b + c)
+
+✅ JavaScript looks for variables:
+* c → found in inner
+* b → found in outer
+* a → found in global
+
+📤 Output → 30
+
+✅ inner() completes → popped from stack.
+
+📦 Stack now:
+| outer() EC |
+| Global EC  |
+
+Step 4 — Back to outer()
+inner() is done, now outer() completes too → popped from stack.
+
+📦 Stack now:
+| Global EC |
+
+Step 5 — Global Ends
+All code done ✅ → Global EC is popped → Stack empty.
+
+📦 Stack now:
+(empty)
+
+🧭 Call Stack Animation
+Let’s visualize the call stack flow step-by-step 👇
+
+                Step 1: Start
+                | Global EC |
+                ---------------------
+
+                Step 2: outer() is called
+                | outer() EC |
+                | Global EC  |
+                ---------------------
+
+                Step 3: inner() is called
+                | inner() EC |
+                | outer() EC |
+                | Global EC  |
+                ---------------------
+
+                Step 4: inner() finishes
+                | outer() EC |
+                | Global EC  |
+                ---------------------
+
+                Step 5: outer() finishes
+                | Global EC |
+                ---------------------
+
+                Step 6: Program ends ✅
+                | (empty) |
+                ---------------------
+
+🧩 What’s Happening Behind the Scenes:
+
+| Phase               | Description                                                                 |
+| ------------------- | --------------------------------------------------------------------------- |
+| Creation Phase      | Memory allocated for variables (`undefined`) and function references stored |
+| Execution Phase     | Values assigned, functions called, and console logs executed                |
+| Scope Chain         | JS engine searches variable names upward (inner → outer → global)           |
+| Stack Order         | Last In → First Out (LIFO)                                                  |
+
+🔍 Key Concept Visualization:
+inner()
+  ⬆️ needs b → from outer()
+  ⬆️ needs a → from global()
+
+So JavaScript climbs up the Scope Chain to find them.
+
+-------------------------------------------------------------------------------------------------------------------------
+
+🧩 Code Recap:
+let a = 5;
+
+function outer() {
+    let b = 10;
+
+    function inner() {
+        let c = 15;
+        console.log(a + b + c);
+    }
+
+    inner();
+}
+
+outer();
+
+🧱 1️⃣ Step 1 – Global Execution Context (GEC)
+When the script starts, JS engine creates the Global Execution Context.
+🌍 Global Scope:
+a = 5
+outer = function reference
+
+📦 Call Stack:
+| Global EC |
+Everything lives here initially.
+
+🧱 2️⃣ Step 2 – outer() is called
+When outer() runs → JS creates a new Function Execution Context (FEC) for it.
+
+🧠 Memory inside outer:
+b = 10
+inner = function reference
+
+📦 Call Stack:
+| outer() EC |
+| Global EC  |
+
+🔗 Scope Chain for outer():
+outer() → Global
+It can access its own variables + global ones.
+
+🧱 3️⃣ Step 3 – inner() is called
+Now, inner() executes → new Function Execution Context created.
+
+🧠 Memory inside inner:
+c = 15
+
+📦 Call Stack:
+| inner() EC |
+| outer() EC |
+| Global EC  |
+
+🔗 Scope Chain for inner():
+inner() → outer() → global
+So, when it runs console.log(a + b + c), here’s what happens 👇
+
+| Variable | Found In | Scope Level           |
+| -------- | -------- | --------------------- |
+| `c`      | inner()  | local scope           |
+| `b`      | outer()  | parent function scope |
+| `a`      | global   | global scope          |
+
+✅ Total = 5 + 10 + 15 = 30
+
+📊 4️⃣ Visual Diagram — Stack + Scope Chain Together
+
+                 🔗 SCOPE CHAIN (variable lookup path)
+ ┌────────────────────────────────────────────────────┐
+ | Global Scope:                                      |
+ |   a = 5                                            |
+ |   outer() {...}                                    |
+ └────────────────────────────────────────────────────┘
+               ▲
+               │
+ ┌────────────────────────────────────────────────────┐
+ | outer() Scope:                                     |
+ |   b = 10                                           |
+ |   inner() {...}                                    |
+ └────────────────────────────────────────────────────┘
+               ▲
+               │
+ ┌────────────────────────────────────────────────────┐
+ | inner() Scope:                                     |
+ |   c = 15                                           |
+ |   console.log(a + b + c); → finds values upward ↑  |
+ └────────────────────────────────────────────────────┘
+
+📦 Call Stack at runtime (bottom → top):
+| inner() EC |   ← currently executing
+| outer() EC |
+| Global EC  |
+
+🧭 5️⃣ Step 4 – Cleanup
+After inner() finishes:
+* It’s popped off the stack.
+* Then outer() finishes → popped.
+* Finally, Global EC → popped.
+📦 Stack becomes empty → Program ends ✅
+
+🧩 Key Takeaways (Interview Ready):
+
+| Concept               | Meaning                                                         |
+| --------------------- | --------------------------------------------------------------- |
+| Call Stack            | Tracks *where* code execution currently is                      |
+| Scope Chain           | Defines *how variables are found* (inner → outer → global)      |
+| Execution Context     | Box that stores function’s variables, `this`, and scope info    |
+| LIFO                  | Last function called → first one to finish                      |
+| Lexical Scope         | Inner functions can access outer variables (but not vice versa) |
+
+
+
+
+
+
+
+
+
+

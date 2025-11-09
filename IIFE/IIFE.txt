@@ -1,0 +1,25 @@
+Immediately Invoked Function Expression (IIFE):
+It’s a function that runs as soon as it’s defined, mainly used to create a private scope and avoid polluting the 
+global namespace.
+
+Syntax:
+Using regular function:
+    (function () {
+      // code here runs immediately
+    })();
+
+Using an arrow function:  
+    (() => {
+      // code here runs immediately
+    })();
+
+🔹 Why use IIFE?
+1. Avoid polluting the global scope
+   * Variables inside an IIFE are not accessible outside it.
+2. Create a private scope
+   * Useful before ES6 introduced let and const.
+3. Run setup or initialization code immediately   
+
+🔹 Key Points:
+   * The parentheses around the function make it an expression (not a declaration).
+   * The final () actually invokes it.
