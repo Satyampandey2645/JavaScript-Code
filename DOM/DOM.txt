@@ -1,0 +1,284 @@
+✅ 1. console.log(window)
+-> Prints the Window object.
+-> This is the global object in the browser.
+-> Contains:
+   * document,
+   * localStorage,
+   * setTimeout,
+   * fetch,
+   * location, etc.
+👉 Basically the entire browser environment.
+
+
+✅ 2. console.log(window.document)
+-> Prints the Document object inside window.
+-> Equivalent to console.log(document) (because window.document === document).
+-> Shows the HTML structure of your current page.
+
+
+✅ 3. console.log(document)
+-> Same as above.
+-> Logs the HTML in a rendered tree style.
+-> You will see the entire DOM structure.
+
+
+✅ 4. console.dir(document)
+-> Displays the document as an object-like expandable list, not as HTML.
+-> Very useful for debugging.
+-> Shows all properties like:
+   * links
+   * images
+   * forms
+   * scripts
+   * body
+   * title
+   * URL
+   * Methods like querySelector(), getElementById()
+👉 Use .dir when you want the object’s properties, not the DOM tree.
+
+
+✅ 5. console.dir(document.links[2])
+-> Shows the 3rd link element (<a> tag) on your page as a JavaScript object.
+-> Displays its properties:
+   * href
+   * innerText
+   * className
+   * id
+   * style, etc.
+
+
+✅ 6. console.log(document.links[2])
+-> Shows the actual DOM element, like:
+   * <a href="https://example.com">Visit</a>
+-> The difference:
+   * console.log() → renders element as HTML
+   * console.dir() → shows element as an object
+
+
+🎯 Summary Table:
+
+| Command                          | Output Type  | Shows                                          |
+| -------------------------------- | ------------ | ---------------------------------------------- |
+| `console.log(window)`            | Object       | Browser global object                          |
+| `console.log(window.document)`   | DOM          | Entire HTML page                               |
+| `console.log(document)`          | DOM          | Same as above                                  |
+| `console.dir(document)`          | Object       | Document as JS object with properties          |
+| `console.log(document.links[2])` | HTML Element | Shows `<a>` element visually                   |
+| `console.dir(document.links[2])` | JS Object    | Shows link’s internal structure and properties |
+
+-------------------------------------------------------------------------------------------------------------------------
+
+🔥 1. document.getElementById('title')
+-> Gets the element with ID = "title".
+-> Returns the entire HTML element.
+
+Example output:
+   <h1 id="title" class="heading">Hello</h1>
+
+
+🔥 2. document.getElementById('title').id
+-> Returns the value of the ID.
+
+Example:
+   "title"
+
+
+🔥 3. document.getElementById('title').class
+❌ This is WRONG.
+-> There is no .class property in JavaScript DOM.
+
+Browsers return:
+   undefined
+
+Use .className or .classList instead.
+
+
+🔥 4. document.getElementById('title').className
+-> Returns the class attribute as a string.
+
+Example:
+   "heading"
+or
+   "test heading"
+
+
+🔥 5. document.getElementById('title').getAttribute('id')
+-> Returns the id value from the HTML attribute.
+
+Works same as .id, but uses DOM method.
+
+Example:
+   "title"
+
+
+🔥 6. document.getElementById('title').getAttribute('class')
+-> Returns class name(s) as they appear in HTML.
+
+Example:
+   "heading"
+
+
+🔥 7. document.getElementById('title').setAttribute('class', 'test')
+-> Sets the class attribute to only "test".
+-> ❗️It overwrites existing classes (removes all old ones).
+-> Final:
+    class="test"
+
+
+🔥 8. document.getElementById('title').setAttribute('class', 'test heading')
+-> Sets the class attribute to two classes.
+-> Final:
+    class="test heading"
+
+
+🔥 9. document.getElementsByClassName('heading')
+→ Returns all elements that have the class "heading".
+→ ❗️It does NOT return a single element — it returns an HTMLCollection (array-like list).
+→ You must access items using index, like [0], [1], etc.
+→ It is live → updates automatically if classes change later.
+
+Example output:
+   HTMLCollection [h1.heading]
+
+To use the element:
+   document.getElementsByClassName('heading')[0]
+
+
+🎯 Summary Table (Perfect for Revision)
+
+| Code                                     | What it does                                |
+| ---------------------------------------- | ------------------------------------------- |
+| `getElementById('title')`                | Gets the HTML element                       |
+| `.id`                                    | Gets the id value                           |
+| `.class`                                 | Does NOT exist (undefined)                  |
+| `.className`                             | Gets class names (string)                   |
+| `.getAttribute('id')`                    | Gets id attribute                           |
+| `.getAttribute('class')`                 | Gets class attribute                        |
+| `.setAttribute('class', 'test')`         | Sets class to "test only"                   |
+| `.setAttribute('class', 'test heading')` | Adds multiple classes                       |
+| `getElementsByClassName('heading')`      | Gets HTML elements having className heading |
+
+-------------------------------------------------------------------------------------------------------------------------
+
+✅ Why textContent shows hidden text
+
+Your HTML:
+   <h1 id="title" class="heading">
+     DOM learning on Chai Aur Code 
+     <span style="display: none;">test text</span>
+   </h1>
+
+1️⃣ textContent
+   title.textContent
+   // "DOM learning on Chai Aur Code test text"
+
+   🔹 textContent returns all the text nodes, even if they are hidden with:
+      -> display: none
+      -> visibility: hidden
+      -> opacity: 0
+
+   So it includes “test text” inside the hidden <span>.
+
+✅ Why innerText hides that text
+   title.innerText
+   // "DOM learning on Chai Aur Code"
+
+
+   🔹 innerText returns only the visible text that is actually rendered in the browser.
+      Since the <span> has display: none, its text is not visible, so innerText excludes it.   
+
+🎯 Quick Summary Table
+
+| Property        | Shows Hidden Text? | Includes CSS Styles? | Faster?   |
+| --------------- | ------------------ | -------------------- | --------- |
+| textContent     | Yes                |  No (ignores CSS)    |  Faster   |
+| innerText       | No                 |  Yes (respects CSS)  |  Slower   |
+
+⭐ Takeaway
+   -> Use textContent → when you want all text, visible or not
+   -> Use innerText → when you want only visible text
+
+✅ What innerHTML Shows
+   title.innerHTML
+   // "DOM learning on Chai Aur Code <span style='display: none;'>test text</span>"
+
+Meaning:
+innerHTML returns the HTML content inside the element, including:
+   * text
+   * tags
+   * attributes
+   * inline styles
+   * hidden elements
+So instead of giving only text, it gives the entire HTML structure.   
+
+Example Breakdown
+Your <h1>:
+   <h1 id="title">
+     DOM learning on Chai Aur Code
+     <span style="display: none;">test text</span>
+   </h1>
+
+innerHTML returns:
+   "DOM learning on Chai Aur Code <span style='display: none;'>test text</span>"
+
+Because it shows exactly what's inside the <h1>, with the <span> tag included.
+
+⭐ Comparison:
+   textContent → Only text (including hidden), no HTML tags
+   innerText   → Only visible text, no HTML tags
+   innerHTML   → Returns HTML + text inside the element
+
+------------------------------------------------------ querySelector ----------------------------------------------------
+
+🔥 document.querySelector('h2')
+→ Selects the first <h2> element in the document.
+→ Always returns only one element (first match).
+→ If multiple <h2> exist, it picks the first one only.
+
+
+🔥 document.querySelector('#title')
+→ Selects the element with id="title".
+→ ID must be unique — so it returns exactly one element.
+
+
+🔥 document.querySelector('.heading')
+→ Selects the first element with class="heading".
+→ Even if many elements have this class, it returns the first one.
+
+
+🔥 document.querySelector('input[type="password"]')
+→ Selects the first input whose type="password".
+→ Uses CSS attribute selector.
+
+
+🔥 document.querySelector('p:first-child')
+→ Selects the <p> that is the first child of its parent.
+→ If no <p> is the first child, it returns null.
+
+
+🔥 document.querySelector('ul')
+→ Selects the first <ul> in the document.
+
+
+🔥 myul.querySelector('li')
+→ Inside the selected <ul>, finds the first <li>.
+→ Querying inside another element.
+
+
+🔥 turnGreen.style.backgroundColor = "green"
+→ Sets the inline CSS style to background-color: green.
+
+
+🔥 turnGreen.style.padding = "10px"
+→ Adds padding on the <li>.
+
+
+🔥 turnGreen.innerText
+→ Gets the visible text of the <li>.
+→ Returns: "one".
+
+
+🔥 turnGreen.innerText = "five"
+→ Changes the list item’s text from one to five.
+→ Only updates text, not structure.
+

@@ -1,4 +1,3 @@
-
 /* --------- We can run this code in browsers console or in replit only ---------
 
 let a = prompt("Hey, whats your age?");
@@ -13,6 +12,9 @@ if (a<0) {
     alert("You can now drive as you are above 18");
 }
 */
+
+// ----------------------------------------------------------------------------------------------------------------------
+
 let a = 19;
 if (a<0) {
     console.log("This is an invalid age");

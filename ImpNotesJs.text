@@ -1,7 +1,32 @@
 JavaScript is a single threaded language. In Js everything is a process.
 
-In browser, window is a global object and In Node.js, this is global object
+In browser, 'window' is a global object and In Node.js, 'this' is global object
 
+-------------------------------------------------------------------------------------------------------------------------
+
+Browser Console Behavior Notes:
+
+1. console.log() prints the value, BUT also returns undefined.
+   That's why the console shows:
+   output
+   undefined
+
+2. Example:
+   console.log(document.links.length);
+   -> Shows the length (output from log)
+   -> Then shows undefined (return value of console.log)
+
+3. If you want ONLY the value without "undefined":
+   Just type the expression directly, e.g.:
+   document.links.length
+
+4. Browser console always displays the result of the last expression evaluated.
+   console.log() returns undefined, so it appears.
+
+5. undefined is NOT an error—it's just the console showing the return value.
+
+
+-------------------------------------------------------------------------------------------------------------------------
 
 1. console.log(3 + "3");
 This results in string concatenation because the + operator, when used with a number and a string,
@@ -141,4 +166,12 @@ In JavaScript, a constructor is a special method used to initialize objects when
 | Only one constructor per class | You can’t have multiple `constructor()` methods in one class. |
 | Use of `super()`               | In subclasses, you must call `super()` before using `this`.   |
 
-      
+-------------------------------------------------------------------------------------------------------------------------
+
+Falsy Values -> false, 0, -0, BigInt 0n, "", null, undefined, NaN
+Truthy Values -> "0", "false", " ", [], {}, function(){}
+
+-------------------------------------------------------------------------------------------------------------------------
+
+A callback function is a function passed as an argument to another function, which is then executed later after some 
+operation is completed.

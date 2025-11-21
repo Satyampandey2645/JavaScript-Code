@@ -1,0 +1,65 @@
+----------- These are practices of DOM Manipulation which we can do in Browser's console for DOM2.html file ------------
+
+document.getElementById('title').setAttribute('class', 'test heading');
+// Sets two classes, replaces old class attribute
+
+const title = document.getElementById('title');
+// Saves the element for reusability
+
+title.style.backgroundColor = 'green';
+// Adds inline background color
+
+title.style.padding = "15px";
+// Adds inline padding
+
+title.style.borderRadius = "50px";
+// Adds inline border radius
+
+title
+// <h1 id="title" class="test heading" style="background-color: green; padding: 15px; border-radius: 50px;">DOM learning on 
+   Chai Aur Code</h1>
+
+title.textContent  // textContent → Returns ALL text including hidden (ignores CSS visibility)
+// 'DOM learning on Chai Aur Code test text'
+
+title.innerText  // innerText → Returns ONLY visible text (respects CSS like display:none)
+// 'DOM learning on Chai Aur Code'
+
+title.innerHTML  // innerHTML → Returns HTML inside the element (including tags, attributes, hidden elements)
+// 'DOM learning on Chai Aur Code <span style="display: none;">test text</span>'
+
+document.getElementByClassName('heading')  // Returns all elements that have the class "heading"
+// HTMLCollection [h1#title.heading, title: h1#title.heading]
+
+document.querySelector('h2')  // querySelector('h2') → Selects the FIRST <h2> element.
+// <h2>1. ​Lorem ipsum dolor sit.​</h2>​
+
+document.querySelector('#title')  // querySelector('#title') → Selects element by ID (only one).
+// <h1 id=​"title" class=​"heading">​…​</h1>​
+
+document.querySelector('.heading')  // querySelector('.heading') → Selects the FIRST element with this class.
+// <h1 id=​"title" class=​"heading">​…​</h1>​
+
+document.querySelector('input[type="password"]')  // querySelector('input[type="password"]') → Selects FIRST input with type="password".
+// <input type=​"password" name id>​
+
+document.querySelector('p:first-child')  // querySelector('p:first-child') → Selects <p> ONLY if it is the first child of its parent.
+
+document.querySelector('ul')  // querySelector('ul') → Selects the FIRST <ul> element.
+// <ul>​…​</ul>​
+
+const myul = document.querySelector('ul')
+
+myul.querySelector('li');  // myul.querySelector('li') → From the <ul>, selects the FIRST <li> inside it.
+// <li>one</li>
+
+const turnGreen = myul.querySelector('li')
+
+turnGreen.style.backgroundColor = "green"  // turnGreen.style.backgroundColor = "green" → Adds inline background color.
+
+turnGreen.style.padding = "10px"  // turnGreen.style.padding = "10px" → Adds padding to the element.
+
+turnGreen.innerText;  // turnGreen.innerText → Gets visible text of the element.
+// one
+
+turnGreen.innerText = "five"  // turnGreen.innerText = "five" → Updates the text inside the element.

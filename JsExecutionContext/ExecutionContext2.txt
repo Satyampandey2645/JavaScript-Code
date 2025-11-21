@@ -1,0 +1,85 @@
+let val1 = 10;
+let val2 = 5;
+function addNum(num1, num2){
+    let total = num1 + num2;
+    return total;
+}
+let result1 = addNum(val1, val2);
+let result2 = addNum(10, 20);
+
+1. Global Execution stored in -> this
+
+2. Memory Creation Phase:
+   val1 -> undefined
+   val2 -> undefined
+   addNum -> definition(references)
+   result1 -> undefined
+   result2 undefined
+
+3. Execution Phase:
+   val1 <- 10   
+   val1 <- 5
+
+   /* line 3 to 6 is function whose references are stored in memory and in execution phase these lines do nothing, it 
+      will work only when we call this function, so next work is of line 7 and it is calling function addNum */
+               ______________________________
+   addNum ->  | 'New Varible Environment'    |  <- this box is Function Execution(FEC) Context and this will create 
+              |           +                  |     everytime whenever the functions is called means whenever the function
+              | 'Execution Thread' -> helps  |     will executes
+              |  in execution of everything  |
+              |  in function                 |    For every FEC, memory creation and execution phase will repeat
+              |______________________________|
+                      _____________________|_____________________
+                     |                                           |
+                Memory Phase                              Execution Phase
+                  val1 <- undefined                          num1 <- 10
+                  val2 <- undefined                          num2 <- 5
+                  total <- undefined                         total <- 15
+                                                             then total will return to Global Execution Context
+
+            After the completion of FECs, it will get deleted
+
+   result1 -> 15                                                       
+               ______________________________
+   addNum ->  | 'New Varible Environment'    |                             
+              |             +                |
+              | 'Execution Thread'           |
+              |                              |
+              |                              |
+              |______________________________|
+                      _____________________|_____________________
+                     |                                           |
+                Memory Phase                              Execution Phase
+                  num1 <- undefined                          num1 <- 10
+                  num2 <- undefined                          num2 <- 20
+                  total <- undefined                         total <- 30
+                                                             then total will return to Global Execution Context
+
+            After the completion of FECs, it will get deleted
+
+   result2 -> 30
+
+
+Call Stack:
+
+|  addNum   |
+| Global EC |
+
+
+-------------------------------------------------------------------------------------------------------------------------
+Example 2:  We can write this code by making new snippet in sources by inspecting in browser and can see its execution 
+            and call stack
+
+function one() {
+  console.log("one");       
+ }
+function two() {
+  console.log("two");
+ }
+function three() {
+  console.log("three");
+ }
+
+one();
+two();
+three();
