@@ -1,0 +1,57 @@
+--------------------------------------- Operations on JavaScript Wikipedia website ---------------------------------------
+
+document.querySelectorAll('h3')
+// NodeList(28) [h3#Creation_at_Netscape, h3#Adoption_by_Microsoft, h3#The_rise_of_JScript, h3#Growth_and_standardization, 
+   h3#Reaching_maturity, h3#Examples_of_scripted_behavior, h3#Libraries_and_frameworks, h3#JavaScript_engine, 
+   h3#Runtime_system, h3#Imperative_and_structured, h3#Weakly_typed, h3#Dynamic, h3#Object-orientation_(prototype-based), 
+   h3#Functional, h3#Delegative, h3#Miscellaneous, h3#Vendor-specific_extensions, h3#Cross-site_scripting, 
+   h3#Cross-site_request_forgery, h3#Misplaced_trust_in_the_client, h3#Misplaced_trust_in_developers, 
+   h3#Browser_and_plugin_coding_errors, h3#Sandbox_implementation_errors, h3#Hardware_vulnerabilities, h3#Java, h3#JSON, 
+   h3#Transpilers, h3#WebAssembly]
+
+const allH3 = document.querySelectorAll('h3')   
+
+allH3[0].innerText;
+// 'Creation at Netscape'
+
+allH3[1].innerText;
+// 'Adoption by Microsoft'
+
+allH3[2].innerText;
+// 'The rise of JScript'
+
+document.getElementsByClassName('mw-heading mw-heading3')
+// HTMLCollection(28) [div.mw-heading.mw-heading3, div.mw-heading.mw-heading3, div.mw-heading.mw-heading3, 
+   div.mw-heading.mw-heading3, div.mw-heading.mw-heading3, div.mw-heading.mw-heading3, div.mw-heading.mw-heading3, 
+   div.mw-heading.mw-heading3, div.mw-heading.mw-heading3, div.mw-heading.mw-heading3, div.mw-heading.mw-heading3, 
+   div.mw-heading.mw-heading3, div.mw-heading.mw-heading3, div.mw-heading.mw-heading3, div.mw-heading.mw-heading3, 
+   div.mw-heading.mw-heading3, div.mw-heading.mw-heading3, div.mw-heading.mw-heading3, div.mw-heading.mw-heading3, 
+   div.mw-heading.mw-heading3, div.mw-heading.mw-heading3, div.mw-heading.mw-heading3, div.mw-heading.mw-heading3, 
+   div.mw-heading.mw-heading3, div.mw-heading.mw-heading3, div.mw-heading.mw-heading3, div.mw-heading.mw-heading3, 
+   div.mw-heading.mw-heading3]
+
+document.querySelectorAll('.mw-heading3')
+// NodeList(28) [div.mw-heading.mw-heading3, div.mw-heading.mw-heading3, div.mw-heading.mw-heading3, 
+   div.mw-heading.mw-heading3, div.mw-heading.mw-heading3, div.mw-heading.mw-heading3, div.mw-heading.mw-heading3, 
+   div.mw-heading.mw-heading3, div.mw-heading.mw-heading3, div.mw-heading.mw-heading3, div.mw-heading.mw-heading3, 
+   div.mw-heading.mw-heading3, div.mw-heading.mw-heading3, div.mw-heading.mw-heading3, div.mw-heading.mw-heading3, 
+   div.mw-heading.mw-heading3, div.mw-heading.mw-heading3, div.mw-heading.mw-heading3, div.mw-heading.mw-heading3, 
+   div.mw-heading.mw-heading3, div.mw-heading.mw-heading3, div.mw-heading.mw-heading3, div.mw-heading.mw-heading3, 
+   div.mw-heading.mw-heading3, div.mw-heading.mw-heading3, div.mw-heading.mw-heading3, div.mw-heading.mw-heading3, 
+   div.mw-heading.mw-heading3]   
+
+const myH3 = document.querySelectorAll('.mw-heading3')  // querySelectorAll('.mw-heading3') → Selects ALL elements with class "mw-heading3" (NodeList)
+
+myH3[0].innerText
+// 'Creation at Netscape'
+
+myH3.forEach(function (h) {       // NodeList supports forEach(), so you can loop directly.
+    h.style.color = "red"         // h.style.color = "red" → Changes text color of each selected element.
+})
+
+myH3.forEach(function (h) {              // myH3.forEach(...) → Loop through each element in NodeList.
+    h.style.color = "black";             // h.style.color = "black" → Sets text color.
+    h.style.backgroundColor = "green";   // h.style.backgroundColor = "green" → Sets background color.
+    h.style.padding = "10px";            // h.style.padding = "10px" → Adds padding.
+    h.innerText = "Satyam Pandey";       // h.innerText = "Satyam Pandey" → Replaces the text content of each element.
+})

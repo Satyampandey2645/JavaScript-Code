@@ -63,3 +63,50 @@ turnGreen.innerText;  // turnGreen.innerText → Gets visible text of the elemen
 // one
 
 turnGreen.innerText = "five"  // turnGreen.innerText = "five" → Updates the text inside the element.
+
+document.querySelectorAll('li')  // querySelectorAll('li') → Returns ALL <li> as a NodeList (not an array).
+// NodeList(3) [li, li, li]
+
+tempLiList
+// NodeList(3) [li, li, li]  // NodeList → Array-like list of nodes (not a true array); access with [index], supports forEach(), but no .style on the whole list.
+
+tempLiList.style.color = "green"  // tempLiList.style.color = "green" → ❌ Error: NodeList has no .style (only elements do).
+// VM5020:1 Uncaught TypeError: Cannot set properties of undefined (setting 'color')
+      at <anonymous>:1:24
+   (anonymous) @ VM5020:1Understand this error
+
+tempLiList[0].style.color = "green"  // tempLiList[0].style.color = "green" → Apply style to the FIRST <li>.
+
+const myH1 = document.querySelectorAll('h1')  // querySelectorAll('h1') → Returns all <h1> elements as a NodeList.
+
+myH1
+// NodeList [h1#title.heading]
+
+myH1[0].style.color = "green"  // myH1[0].style.color = "green" → Style the first <h1> element.
+
+tempLiList.forEach(function (L){           // tempLiList.forEach(L => L.style.backgroundColor = "orange") 
+    L.style.backgroundColor = "orange"     // → Loop through NodeList and style ALL <li>.
+})
+
+document.getElementsByClassName('list-item')  // getElementsByClassName('list-item') → Returns an HTMLCollection (array-like, NOT an array).
+// HTMLCollection(4) [li.list-item, li.list-item, li.list-item, li.list-item]
+
+const tempClassList = document.getElementsByClassName('list-item')
+
+tempClassList.forEach(function (li) {  // tempClassList.forEach(...) → ❌ Error: HTMLCollection does NOT have forEach().
+
+    console.log(li);
+})
+// VM5927:1 Uncaught TypeError: tempClassList.forEach is not a function at <anonymous>:1:15
+
+Array.from(tempClassList)  // Array.from(tempClassList) → Converts HTMLCollection into a REAL array.
+// (4) [li.list-item, li.list-item, li.list-item, li.list-item]
+
+const myConvertedArray = Array.from(tempClassList)  // Saves the converted array for reuse.
+
+myConvertedArray
+// (4) [li.list-item, li.list-item, li.list-item, li.list-item]
+
+myConvertedArray.forEach(function (li) {  // myConvertedArray.forEach(...) → Now forEach works; can loop and apply styles.
+    li.style.color = "orange"  
+})
