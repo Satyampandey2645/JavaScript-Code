@@ -23,6 +23,6 @@ console.log(typeof isLoggedIn)  // boolean
 
 console.log(typeof "Satyam");  // string
 console.log(typeof age);  // number
-console.log(typeof(name));  // string
+console.log(typeof(name));  // string 
 console.log(typeof null);  // object
 console.log(typeof undefined);  // undefined

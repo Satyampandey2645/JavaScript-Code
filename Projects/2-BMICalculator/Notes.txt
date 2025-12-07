@@ -1,0 +1,42 @@
+✅ Why this gives empty value?
+    const height = parseInt(document.querySelector('#height').value);
+    const weight = parseInt(document.querySelector('#weight').value);
+
+Because when this code runs outside the event listener, the page has just loaded.
+
+➡️ The user has not typed anything yet
+➡️ So #height.value and #weight.value are both "" (empty strings)
+➡️ parseInt("") gives NaN
+
+❗ So the values are always empty if you read them before form submission.
+This is why the commented code doesn’t work in your case.
+
+
+✅ Why it works inside the submit event?
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const height = parseInt(document.querySelector('#height').value);
+        const weight = parseInt(document.querySelector('#weight').value);
+    });
+
+Inside the event:
+   ✔ User has already typed the height & weight
+   ✔ The submit button was clicked
+   ✔ So now the values exist
+   ✔ parseInt() gives correct numbers
+
+
+🧠 Summary (Easy to remember)
+    -> Outside submit event → values empty because user hasn't typed yet
+    -> Inside submit event → values available because the form has been filled
+
+-------------------------------------------------------------------------------------------------------------------------
+
+🔍 Why isNaN() useful in your BMI Calculator?
+Because if the user enters:
+   -> empty input
+   -> text instead of numbers
+   -> invalid values
+…then parseInt() returns NaN.
+You can catch that using isNaN(): 

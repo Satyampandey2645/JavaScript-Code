@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chai Aur Code</title>
+</head>
+<body style="background-color: #212121; color: #fff ">
+    
+</body>
+<script>
+    // Function to create a div with custom text and colors
+    function createDiv(text, bgColor, textColor) {
+        const div = document.createElement('div');
+
+        div.className = 'main';
+        div.id = Math.round(Math.random() * 1000);
+
+        div.setAttribute("title", "Generated Box");
+        div.style.backgroundColor = bgColor;
+        div.style.color = textColor;
+        div.style.padding = "12px";
+        div.style.margin = "10px";
+        div.style.borderRadius = "8px";
+
+        const addText = document.createTextNode(text);
+        div.appendChild(addText);
+
+        document.body.appendChild(div);
+    }
+
+    // Array of background colors
+    const bgColors = ["green", "blue", "purple", "orange", "red"];
+
+    // Array of text colors
+    const textColors = ["white", "yellow", "black", "white", "black"];
+
+    // Create 5 divs using loop
+    for (let i = 0; i < 5; i++) {
+        createDiv(`Generated Div ${i + 1}`, bgColors[i], textColors[i]);
+    }
+</script>
+
+</html>

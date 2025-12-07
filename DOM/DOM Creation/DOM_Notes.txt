@@ -1,0 +1,36 @@
+✅ div.id, div.style, and div.innerHTML update the element through DOM properties, which the browser then reflects in 
+    the HTML, while setAttribute() and createTextNode() directly modify the element’s attributes or text nodes.
+
+    .innerHTML, .id, and .style go through the DOM property layer first and then update the actual HTML, so it’s like a 
+    two-step (two-layer) process. But setAttribute() and createTextNode() directly update the HTML attribute or text node
+    in one step.
+    
+✅ Difference Between .id / .style / .innerHTML and .setAttribute() / createTextNode()
+    div.id = "myId";
+    div.style.backgroundColor = "green";
+    div.innerHTML = "Hello";
+
+   ✓ These use DOM properties
+    * They modify the element using JavaScript properties, not the raw HTML.
+    * After modifying, the browser reflects these changes in the HTML (when you inspect), but internally they are handled as DOM object properties.
+    * Example:
+      -> div.id updates the DOM id property
+      -> div.style.color updates the DOM style object
+      -> div.innerHTML replaces content by parsing HTML text
+
+📌 .setAttribute()
+    div.setAttribute("title", "generated title");
+
+   ✓ This updates the raw HTML attribute directly.
+    * It writes to the HTML attribute, not the DOM property.
+    * Both methods update the same element, but .setAttribute() works at the HTML attribute level.
+
+📌 createTextNode()
+   const text = document.createTextNode("Chai Aur Code");
+   div.appendChild(text);
+
+   ✓ This creates pure text and inserts it directly into the DOM safely.
+    * It does NOT parse HTML
+    * It does NOT overwrite existing content
+    * It just adds text as a node
+

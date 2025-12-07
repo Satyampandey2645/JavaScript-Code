@@ -3,7 +3,7 @@ let strr = "    Satyam    Pandey       "
 console.log(strr);  //     Satyam    Pandey       
 console.log(strr.trim());  // Satyam    Pandey
 console.log(strr.trimStart());  // Satyam    Pandey       
-console.log(strr.trimEnd());  //     Satyam    Pande
+console.log(strr.trimEnd());  //     Satyam    Pandey
 
 
 // replace()

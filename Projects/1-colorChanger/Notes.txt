@@ -1,0 +1,34 @@
+The reason the 5th button (“purple”) changes the background color even without CSS is:
+
+✅ Because the JavaScript sets the background color using the ID name, and “purple” is a valid CSS color keyword.
+
+When you click the purple button, this line executes:
+    body.style.backgroundColor = e.target.id;
+
+Here,
+e.target.id === "purple"
+
+So it becomes:
+    body.style.backgroundColor = "purple";
+
+Even if you did NOT assign any CSS to #purple in your stylesheet, the JavaScript still applies the background color to 
+the BODY, not to the button.
+
+
+👉 Why the purple button itself is not showing color?
+Because you never added CSS for the element:
+    #purple {
+        background: purple;
+    }
+So the page background becomes purple, but the button stays white because its CSS is missing.
+
+✅ Fix — Add CSS for the purple button:
+    #purple {
+        background: purple;
+    }
+
+Now everything works consistently:
+    -> Button appears purple
+    -> Background becomes purple on click
+
+    
